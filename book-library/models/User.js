@@ -6,13 +6,13 @@
 
 const mongoose = require('mongoose');
 // Extracts Schema class so we can define structure of our documents
-const Schema = mongoose.Schema();
+const { Schema } = mongoose;
 
 //Creates new Schema for User model with its own fields & properties
 const userSchema = new Schema({
 	username: { type: String, required: true },
 	email: { type: String, required: true, unique: true },
-	hashedPassword: { type: String, required: true },
+	password: { type: String, required: true },
 	profilePublic: { type: Boolean, default: true }
 });
 

@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
 		}
 
 		// Generates salt to be combined with password before hashing
-		const salt = await.bcrypt.genSalt(10);
+		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
 
 		// Update user with new hashed password
@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
 
 		// Generate JWT token
 		// Payload for token - consists of user id (claim)
-		const payload {
+		const payload = {
 			user: {
 				id: user.id
 			}
@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
 		// Token signature
 		// Encoded payload & secret are wrapped - sent back to client & valid for 1h
 		// If error occurs, will be passed in err
-		jwt.sign(payload, 'jwtSecret', { expiresIn: 3600 }, (err, token) => {
+		jwt.sign(payload, 'f310805a97f03af69ed62936639e680a1b2b838dff0157f9e1cd4ba38479e4df', { expiresIn: 3600 }, (err, token) => {
 			if (err) throw err;
 			// Sends JSON obj to client to be used
 			res.json({ token });
