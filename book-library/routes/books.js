@@ -5,9 +5,10 @@
 
 const express = require('express');
 const router = express.Router();
+const authMiddleware = require('../middleware/auth');
 const Book = require('../models/Book');
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
 	try {
 		const { title, author, genre, rating } = req.body;
 
@@ -27,7 +28,7 @@ router.post('/', async (req, res) => {
 });
 
 // Route to get ALL books for user
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
 	try {
 		// Finds all books linked to user
 		const books = await Book.find({ user: req.user.id });
@@ -41,7 +42,7 @@ router.get('/', async (req, res) => {
 
 // Route to Update book
 // Route expects paramter named 'id' in URL
-Router.put('/:id', async (req, res) => {
+router.put('/:id', authMiddleware, async (req, res) => {
 	try {
 		const { title, author, genre, rating } = req.body;
 
@@ -73,7 +74,7 @@ Router.put('/:id', async (req, res) => {
 
 // Route to del book
 // Route expects id in URL
-Router.delete('/:id', async (req, res) => {
+router.delete('/:id', authMiddleware, async (req, res) => {
 	try {
 		// Retrieve id from book and find book by id in db
 		const book = await Book.findById(req.params.id);
