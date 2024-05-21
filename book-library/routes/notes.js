@@ -4,9 +4,10 @@
 
 const express = require('express');
 const router = express.Router();
+const authMiddleware = require('../middleware/auth');
 const Note = require('../models/Note');
 
-router.post('/', async (req, res) => {
+router.post('/', authMiddleware, async (req, res) => {
 	try {
 		const { content, bookId } = req.body;
 		const note = new Note({
@@ -23,7 +24,7 @@ router.post('/', async (req, res) => {
 	}
 });
 
-router.get('/:bookId', async (req, res) => {
+router.get('/:bookId', authMiddleware, async (req, res) => {
 	try {
 		const notes = await Note.find({ book: req.params.bookId, user: req.user.id });
 		res.json(notes);
@@ -33,7 +34,7 @@ router.get('/:bookId', async (req, res) => {
 	}
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authMiddleware, async (req, res) => {
 	try {
 		const { content } = req.body;
 		let note = await Note.findById(req.params.id);
@@ -54,7 +55,7 @@ router.put('/:id', async (req, res) => {
 	}
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authMiddleware, async (req, res) => {
 	try {
 		const note = await Note.findById(req.params.id);
 
