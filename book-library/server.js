@@ -25,8 +25,6 @@ mongoose.connect('mongodb://localhost:27017/book-library', {
 
 // Middleware
 app.use(express.json());
-// Serve static files from public dir to make accessible by client
-app.use(express.static('public'));
 
 // Middleware - applied to requests that start with /api/auth
 app.use('/api/auth', authRoutes);
