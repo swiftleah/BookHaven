@@ -44,5 +44,5 @@ app.get('/register', (req, res) => {
 	res.sendFile(path.join(__dirname, 'views', 'register.html'));
 });
 
-const PORT = process.env.PORT || 3010;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
