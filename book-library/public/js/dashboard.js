@@ -1,79 +1,68 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const addBookBtn = document.getElementById('add-book-btn');
-    const booksList = document.getElementById('books-list');
-    const searchForm = document.getElementById('search-form');
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("login-form");
+  const registerForm = document.getElementById("register-form");
 
-    addBookBtn.addEventListener('click', () => {
-        window.location.href = '/addEditBook';
-    });
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-    const fetchBooks = async (query = '') => {
-        try {
-            const response = await fetch(`/api/books${query}`);
-            const data = await response.json();
-            if (response.ok) {
-                renderBooks(data);
-            } else {
-                alert(data.msg || 'Failed to fetch books');
-            }
-        } catch (err) {
-            console.error('Error:', err);
+      try {
+        const response = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          localStorage.setItem("token", data.token);
+          alert("Login successful!");
+          // Redirect to dashboard
+          window.location.href = "/dashboard";
+        } else {
+          console.error("Login error:", data);
+          alert(data.msg || "Login failed. Please try again.");
         }
-    };
-
-    const renderBooks = (books) => {
-        booksList.innerHTML = '';
-        books.forEach(book => {
-            const bookItem = document.createElement('div');
-            bookItem.className = 'book-item';
-            bookItem.innerHTML = `
-                <h3>${book.title}</h3>
-                <p>Author: ${book.author}</p>
-                <p>Genre: ${book.genre}</p>
-                <p>Rating: ${book.rating}</p>
-                <button class="btn btn-primary edit-btn" data-id="${book._id}">Edit</button>
-                <button class="btn btn-danger delete-btn" data-id="${book._id}">Delete</button>
-            `;
-            booksList.appendChild(bookItem);
-        });
-
-        document.querySelectorAll('.edit-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const bookId = e.target.getAttribute('data-id');
-                window.location.href = `/addEditBook?id=${bookId}`;
-            });
-        });
-
-        document.querySelectorAll('.delete-btn').forEach(button => {
-            button.addEventListener('click', async (e) => {
-                const bookId = e.target.getAttribute('data-id');
-                try {
-                    const response = await fetch(`/api/books/${bookId}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
-                        }
-                    });
-                    const data = await response.json();
-                    if (response.ok) {
-                        alert('Book deleted successfully');
-                        fetchBooks();
-                    } else {
-                        alert(data.msg || 'Failed to delete book');
-                    }
-                } catch (err) {
-                    console.error('Error:', err);
-                }
-            });
-        });
-    };
-
-    searchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const searchQuery = document.getElementById('search').value;
-        fetchBooks(`?genre=${searchQuery}`);
+      } catch (err) {
+        console.error("Error:", err);
+        alert("An error occurred. Please try again.");
+      }
     });
+  }
 
-    fetchBooks();
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      try {
+        const response = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, email, password }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          alert("Registration successful!");
+          // Redirect to login page
+          window.location.href = "/login";
+        } else {
+          console.error("Registration error:", data);
+          alert(data.msg || "Registration failed. Please try again.");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("An error occurred. Please try again.");
+      }
+    });
+  }
 });
-
