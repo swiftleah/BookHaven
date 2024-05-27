@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (response.ok) {
           localStorage.setItem("token", data.token);
           alert("Login successful!");
-          // Redirect to a protected page or dashboard
+          // Redirect to dashboard
+          window.location.href = "/dashboard";
         } else {
           console.error("Login error:", data);
           alert(data.msg || "Login failed. Please try again.");
@@ -52,7 +53,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
         if (response.ok) {
           alert("Registration successful!");
-          // Optionally redirect to login page
+          // Redirect to login page
+          window.location.href = "/login";
         } else {
           console.error("Registration error:", data);
           alert(data.msg || "Registration failed. Please try again.");
