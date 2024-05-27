@@ -9,9 +9,8 @@ const authMiddleware = require('../middleware/auth');
 const Book = require('../models/Book');
 
 router.post('/', authMiddleware, async (req, res) => {
+	const { title, author, genre, rating } = req.body;
 	try {
-		const { title, author, genre, rating } = req.body;
-
 		const book = new Book({
 			title,
 			author,
