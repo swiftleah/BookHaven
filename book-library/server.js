@@ -52,5 +52,9 @@ app.get('/addEditBook', (req, res) => {
 	res.sendFile(path.join(__dirname, 'views', 'addEditBook.html'));
 });
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/home.html");
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
