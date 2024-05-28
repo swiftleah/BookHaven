@@ -157,12 +157,30 @@
     <section class="container">
       <header class="header">
         <div class="auth-buttons">
-          <button class="sign-up" aria-label="Sign up">Sign up</button>
-          <button class="log-in" aria-label="Log in">Log in</button>
+          <button
+            class="sign-up"
+            aria-label="Sign up"
+            onclick="window.location.href='/register'"
+          >
+            Sign up
+          </button>
+          <button
+            class="log-in"
+            aria-label="Log in"
+            onclick="window.location.href='/login'"
+          >
+            Log in
+          </button>
         </div>
         <nav class="options">
           <span class="settings" tabindex="0" role="button">Settings</span>
-          <span class="profile" tabindex="0" role="button">Profile</span>
+          <span
+            class="profile"
+            tabindex="0"
+            role="button"
+            onclick="window.location.href='/login'"
+            >Profile</span
+          >
         </nav>
       </header>
       <h1 class="title">Book</h1>
