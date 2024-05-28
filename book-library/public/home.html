@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .container {
+        background: radial-gradient(
+          50% 50% at 50% 50%,
+          rgba(2, 10, 12, 0.02) 0%,
+          #80d4da 14.29%,
+          rgba(218, 213, 172, 0.7) 28.57%,
+          rgba(190, 190, 190, 1) 42.86%,
+          #9ebbbd 71.42%,
+          rgba(233, 226, 163, 0.54) 71.43%,
+          #9ebbbd 87%,
+          #9ebbbd 100%
+        );
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 70px 62px;
+        position: relative;
+        height: 100vh;
+      }
+      @media (max-width: 991) {
+        .container {
+          padding: 0 20px;
+        }
+      }
+      .header {
+        align-self: stretch;
+        display: flex;
+        width: 100%;
+        align-items: start;
+        gap: 20px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 130%;
+        justify-content: space-between;
+      }
+      @media (max-width: 991px) {
+        .header {
+          max-width: 100%;
+          flex-wrap: wrap;
+        }
+      }
+      .auth-buttons {
+        display: flex;
+        gap: 20px;
+        font-size: 24px;
+        justify-content: space-between;
+      }
+      .sign-up {
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Poppins, sans-serif;
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        background-color: #6169e3;
+        color: #fff;
+        justify-content: center;
+        padding: 7px 11px;
+      }
+      .log-in {
+        color: rgba(0, 0, 0, 0.25);
+        font-feature-settings: "clig" off, "liga off";
+        font-family: Poppins, sans-serif;
+      }
+      .options {
+        display: flex;
+        margin-top: 19px;
+        gap: 20px;
+        font-size: 20px;
+        color: #fff;
+        white-space: nowrap;
+        justify-content: space-between;
+      }
+      @media (max-width: 991px) {
+        .options {
+          white-space: initial;
+        }
+      }
+      .settings {
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Poppins, sans-serif;
+      }
+      .profile {
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: Poppins, sans-serif;
+      }
+      .title {
+        color: #444;
+        text-align: center;
+        font-feature-settings: "clig" off, "liga" off;
+        margin-top: 20px;
+        font: italic 275 85px/130% Poppins, -apple-system, Roboto, Helvetica,
+          sans-serif;
+        position: absolute;
+        top: 27%;
+        left: calc(50% - 290.5px);
+      }
+      @media (max-width: 991px) {
+        .title {
+          margin-top: 40px;
+          font-size: 40px;
+          left: calc(50% - 77px);
+        }
+      }
+      .img-wrapper {
+        border-radius: 50%;
+        background: linear-gradient(180deg, #c59292 0%, #745ba8 100%);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        display: flex;
+        width: 200px;
+        height: 200px;
+        flex-direction: column;
+        align-items: center;
+        padding: 77px 53px 43px;
+        margin: 0 auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @media (max-width: 991px) {
+        .img-wrapper {
+          padding: 0 20px;
+        }
+      }
+      .book-image {
+        aspect-ratio: 1.06;
+        object-fit: auto;
+        object-position: center;
+        width: 100%;
+      }
+      .brand-name {
+        color: #484848;
+        text-align: center;
+        font-feature-settings: "clig" off, "liga" off;
+        margin: 50px 0 0 0;
+        font: italic 275 85px/130% Poppins, -apple-system, Roboto, Helvetica,
+          sans-serif;
+        position: absolute;
+        top: 60%;
+        left: 58%;
+        transform: translateX(-50%);
+      }
+      @media (max-width: 991px) {
+        .brand-name {
+          font-size: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <header class="header">
+        <div class="auth-buttons">
+          <button class="sign-up" aria-label="Sign up">Sign up</button>
+          <button class="log-in" aria-label="Log in">Log in</button>
+        </div>
+        <nav class="options">
+          <span class="settings" tabindex="0" role="button">Settings</span>
+          <span class="profile" tabindex="0" role="button">Profile</span>
+        </nav>
+      </header>
+      <h1 class="title">Book</h1>
+      <figure class="img-wrapper">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/738c3f9649ee4fa336eb12b9496efbb66e120e7d0a4125398412eb096cea930d?apiKey=f1f1aa2cce5b4a928169e8b68d9e90ea&"
+          alt="Book cover"
+          class="book-image"
+        />
+      </figure>
+      <h2 class="brand-name">Haven</h2>
+    </section>
+  </body>
+</html>
+
