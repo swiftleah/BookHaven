@@ -1,11 +1,11 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #99cccf !important;
   margin: 0;
 }
 
 .container {
-  background: #fff;
+  background: #ffffff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,7 @@ h2 {
 button {
   width: 100%;
   padding: 10px;
-  background: #007bff;
+  background: #c5b7d7 !important;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -44,7 +44,7 @@ button {
 }
 
 button:hover {
-  background: #0056b3;
+  background: #c5b7d7 !important;
 }
 
 p {
@@ -52,20 +52,21 @@ p {
 }
 
 .navbar {
-  background-color: #f8f9fa; /* Set background color */
-  padding: 10px 0; /* Add some padding for better appearance */
-  text-align: center; /* Center align the content */
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
 }
 
 .navbar a {
-  margin-right: 20px; /* Add some space between links */
+  margin-right: 20px;
 }
 
 .navbar-brand {
-  margin-right: auto; /* Push the brand/logo to the left */
+  margin-right: auto;
 }
 
 .navbar-nav {
-  margin-left: auto; /* Push the links to the right */
+  margin-left: auto;
 }
 
