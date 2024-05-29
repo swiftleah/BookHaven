@@ -11,6 +11,7 @@ const path = require('path');
 const authRoutes = require('./routes/auth');
 const bookRoutes = require('./routes/books');
 const noteRoutes = require('./routes/notes');
+const userRoutes = require('./routes/users');
 
 // Create instance of express framework
 // Where app represents our web application
@@ -20,6 +21,8 @@ const app = express();
 mongoose.connect('mongodb://localhost:27017/book-library', {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
+	useCreateIndex: true,
+	useFindAndModify: false
 })
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Failed to connect to MongoDB', err));
@@ -34,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/notes', noteRoutes);
+app.use('/api/users', userRoutes);
 
 //Serve HTML templates
 app.get('/login', (req, res) => {
@@ -54,6 +58,10 @@ app.get('/addEditBook', (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/home.html");
+});
+
+app.get('/profile', (req, res) => {
+  res.sendFile(__dirname + '/public/profile.html');
 });
 
 const PORT = process.env.PORT || 3000;
